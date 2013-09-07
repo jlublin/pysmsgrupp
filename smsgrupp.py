@@ -3,9 +3,9 @@
 import sys
 import requests
 
-phone_number = 'phone number'
-password = 'password'
-gid = 'group id'
+phone_number = '<phone number>'
+password = '<password>'
+gid = '<group id>'
 
 if(len(sys.argv) < 2):
 	print 'Usage: %s \'<text message>\'' % sys.argv[0]
