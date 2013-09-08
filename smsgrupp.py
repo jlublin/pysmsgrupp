@@ -2,6 +2,7 @@
 
 import sys
 import requests
+import getpass
 
 phone_number = '<phone number>'
 password = '<password>'
@@ -12,6 +13,15 @@ if(len(sys.argv) < 2):
 	exit()
 
 sms_text = sys.argv[1]
+
+if(phone_number == '' || type(phone_number != str)):
+    phone_number = raw_input('Phone number: ')
+
+if(password == '' || type(password != str)):
+    password = getpass.getpass()
+
+if(gid == '' || type(gid != str)):
+    gid = raw_input('Groud ID: ')
 
 s = requests.Session()
 
