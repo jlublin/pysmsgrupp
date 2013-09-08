@@ -4,9 +4,14 @@ import sys
 import requests
 import getpass
 
+# Edit the following options
+# Leave blank ('') to get asked for the parameter when running the program
+
 phone_number = '<phone number>'
 password = '<password>'
 gid = '<group id>'
+
+# End of parameters
 
 if(len(sys.argv) < 2):
 	print 'Usage: %s \'<text message>\'' % sys.argv[0]
@@ -23,10 +28,13 @@ if(password == '' || type(password != str)):
 if(gid == '' || type(gid != str)):
     gid = raw_input('Groud ID: ')
 
+# Session which saves cookies
 s = requests.Session()
 
+# Login
 d = s.post('http://smsgrupp.se/', {'number' : phone_number, 'password' : password})
 
+# Send message
 d = s.get('http://smsgrupp.se/weblogic/send_sms_to_group.php', params={'gid' : gid, 'deliver' : 'now', 'msg' : sms_text, 'self_send' : 'true'})
 
 if(d.text == '{"status":"ok"}'):
