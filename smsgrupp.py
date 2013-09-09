@@ -19,13 +19,13 @@ if(len(sys.argv) < 2):
 
 sms_text = sys.argv[1]
 
-if(phone_number == '' || type(phone_number != str)):
+if(phone_number == '' or type(phone_number != str)):
     phone_number = raw_input('Phone number: ')
 
-if(password == '' || type(password != str)):
+if(password == '' or type(password != str)):
     password = getpass.getpass()
 
-if(gid == '' || type(gid != str)):
+if(gid == '' or type(gid != str)):
     gid = raw_input('Groud ID: ')
 
 # Session which saves cookies
