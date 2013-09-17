@@ -1,0 +1,79 @@
+Timestamps is in seconds from 1970 (unix time)
+
+#################################
+# Login
+POST / {'number', 'password'}
+
+number      Phone number
+password    Password
+
+returns ?
+
+#################################
+# Send message
+GET /weblogic/send_sms_to_group.php {'gid', 'deliver', 'msg', 'self_send')
+
+gid         Destination group ID [numbers]
+msg         SMS text message
+deliver     Time of delivery, 'now' or date (unknown format)
+self_send   Send SMS copy to sender ['true', 'false']
+
+returns "status" with argument:
+
+    "ok"                    SMS successfully sent
+    "sms will be sent"      Time-delayed SMS successfully received
+    "duplicate"             Error: Duplicate of SMS sent last hour
+    "time_passed"           Error: Time of time-delayed SMS already passed
+    "too active"            Error: Too many SMSs sent in too short time
+    "carrier not allowed"   Error: Your carrier doesn't allow you to send SMS
+                                    via web-interface
+    "not logged in"         Error: Not logged in
+    "not in group"          Error: Not member of destination group
+    "failed"                Error: Unspecified error
+
+#################################
+# Get group member list
+? GET ?_groupmembers.php
+
+#################################
+# Rename users
+GET /weblogic/rename_other_user.php {'gid', 'nr', 'name'}
+
+returns nothing?
+
+#################################
+# Set Mute
+
+POST /weblogic/set_mute.php {'action', 'gid', 'start', 'stop'}
+
+action
+gid
+start
+stop
+
+returs "status"
+    "ok"
+    "not valid"
+
+
+#################################
+# Update public name
+
+GET /weblogic/set_public_name.php {'gid', 'name'}
+
+gid
+name
+
+returns "status"
+    "ok"
+    "taken"
+    "not valid"
+
+#################################
+# Get more messages
+GET /weblogic/get_new_texts.php {'gid', 'from', 'amount'}
+
+returns 
+    "ok"
+    *else*  Unknown return error
+
